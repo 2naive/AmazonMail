@@ -31,7 +31,7 @@
         $text_msg = str_replace(MASK_USERNAME, $user[1], $msg_text);
         $html_msg = str_replace(MASK_USERNAME, $user[1], $msg_html);
         
-        if(BACKBONE_ENABLED && strlen($credentials['LINK_BACKBONE'] > 0))
+        if(BACKBONE_ENABLED && strlen($credentials['LINK_BACKBONE']) > 0)
         {
             $html_msg .='<img src="' .
                         $credentials['LINK_BACKBONE'] .

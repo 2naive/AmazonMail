@@ -27,9 +27,9 @@
     
     # Writing log
     
-    $f = fopen(PATH_DIR_LOG . DIRECTORY_SEPARATOR . date("Y.m.d") . '.txt', 'a');
-    fwrite($f, $log_str );
-    fclose($f);
+    $f = @fopen(PATH_DIR_LOG . DIRECTORY_SEPARATOR . date("Y.m.d") . '.txt', 'a');
+    @fwrite($f, $log_str );
+    @fclose($f);
     
     # Generating IMG for letter
     
