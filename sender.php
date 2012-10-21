@@ -1,4 +1,27 @@
 <?php
+/**
+ * AmazonMail - AWS SES PHP mailer script based on SES class
+ *
+ * @author Nedzelsky Alexander <to.naive@gmail.com>
+ * @version 0.1
+ * @link http://stupid.su/aws-ses_php_mailer/
+ *
+ * @todo refactor
+ * @todo bugfixes
+ * @todo class ? dunno yet
+ */
+
+    # Initializing console mode
+    if (function_exists('apache_setenv'))
+    {
+        # Internal Server Error fix in case no apache_setenv() function exists
+        @apache_setenv('no-gzip', 1);
+    }
+    @ini_set('zlib.output_compression', 0);
+    @ini_set('implicit_flush', 1);
+    for ($i = 0; $i < ob_get_level(); $i++)
+        ob_end_flush();
+    ob_implicit_flush(1);
 
     require_once("config.php");
 

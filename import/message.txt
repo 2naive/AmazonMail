@@ -1,0 +1,3 @@
+Hi, {%USERNAME%}!
+
+This is plaintext test message.
