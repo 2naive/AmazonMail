@@ -46,7 +46,13 @@
     $SES->enableVerifyPeer(false);
     #print_r($SES->verifyEmailAddress(FROM_SHORT));
     echo "# Verified sender email addresses\r\n";
-    Lib::print_array( $SES->listVerifiedEmailAddresses() );
+    $verified_email_arr = $SES->listVerifiedEmailAddresses();
+    if(!is_array($verified_email_arr))
+    {
+        echo "# No emails verified or credentials wrong. Check AWS SES settings or /import/credentials.csv (Access Key Id/Secret Access Key).\r\n";
+        die();
+    }
+    Lib::print_array($verified_email_arr);
 
     # Sending 1 email per user
     foreach ($users as $id=>$user)
