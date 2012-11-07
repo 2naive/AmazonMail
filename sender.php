@@ -9,6 +9,8 @@
  * @todo refactor
  * @todo bugfixes
  * @todo class ? dunno yet
+ * @todo AngryCurl turbo speed !!!
+ * @todo show graphs
  */
 
     # Initializing console mode
@@ -54,9 +56,16 @@
     }
     Lib::print_array($verified_email_arr);
 
+    # Starting Timer
+    $time_start = microtime(1);
+    echo "<pre>";
+    
     # Sending 1 email per user
     foreach ($users as $id=>$user)
     {
+        # Starting inner Timer
+        $time_start_inner = microtime(1);
+    
         $text_msg = str_replace(MASK_USERNAME, $user[1], $msg_text);
         $html_msg = str_replace(MASK_USERNAME, $user[1], $msg_html);
         
@@ -75,11 +84,20 @@
         $m->setSubject($credentials['TITLE']);
         $m->setMessageFromString($text_msg, $html_msg);
         
-        $send_emails[]=($SES->sendEmail($m));
+        #$send_emails[]=($SES->sendEmail($m));
+        $result = $SES->sendEmail($m);
+        
+        $time_end_inner = microtime(1);
+        
+        echo $user[0] . ':' . $result['RequestId'] . ':' . $result['MessageId'] . ':' . round($time_end_inner - $time_start_inner, 2) . "s\r\n";
         unset($m);
+        unset($result);
+        
     }
-    
-echo "# Sended emails\r\n";
-Lib::print_array($send_emails);
+
+$time_end = microtime(1);    
+echo "# Sended in ".round($time_end - $time_start, 2)."s\r\n";
+echo "</pre>";
+#Lib::print_array($send_emails);
 
 ?>
