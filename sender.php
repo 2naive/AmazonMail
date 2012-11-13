@@ -60,9 +60,13 @@
     $time_start = microtime(1);
     echo "<pre>";
     
+    $rid = 0;
+    
     # Sending 1 email per user
     foreach ($users as $id=>$user)
     {
+        $rid++;
+        
         # Starting inner Timer
         $time_start_inner = microtime(1);
     
@@ -89,7 +93,11 @@
         
         $time_end_inner = microtime(1);
         
-        echo $user[0] . ':' . $result['RequestId'] . ':' . $result['MessageId'] . ':' . round($time_end_inner - $time_start_inner, 2) . "s\r\n";
+        echo    $rid . "\t" .
+                round($time_end_inner - $time_start_inner, 2) . "s\t" .
+                $user[0] . "\t" .
+                $result['RequestId'] . "\t" .
+                $result['MessageId'] . "\r\n";
         unset($m);
         unset($result);
         
