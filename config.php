@@ -2,11 +2,10 @@
 ini_set('max_execution_time',0);
 ini_set('memory_limit', '128M');
 
-require_once( dirname(__DIR__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR .  'ses.class.php');
-require_once( dirname(__DIR__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR .  'lib.class.php');
+DEFINE('PATH_DIR_MAIN', dirname(__FILE__));
 
-DEFINE('PATH_DIR_LOG', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'log');
-DEFINE('PATH_DIR_IMPORT', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'import');
+DEFINE('PATH_DIR_LOG', PATH_DIR_MAIN . DIRECTORY_SEPARATOR . 'log');
+DEFINE('PATH_DIR_IMPORT', PATH_DIR_MAIN . DIRECTORY_SEPARATOR . 'import');
 
 DEFINE('PATH_FILE_SUBSCRIBERS', PATH_DIR_IMPORT . DIRECTORY_SEPARATOR . 'subscribers.txt');
 DEFINE('PATH_FILE_MSG_TEXT', PATH_DIR_IMPORT . DIRECTORY_SEPARATOR . 'message.txt');
@@ -16,3 +15,7 @@ DEFINE('PATH_FILE_CREDENTIALS', PATH_DIR_IMPORT . DIRECTORY_SEPARATOR . 'credent
 DEFINE('MASK_USERNAME', '{%USERNAME%}');
 
 DEFINE('BACKBONE_ENABLED', TRUE);
+
+require_once( PATH_DIR_MAIN . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR .  'ses.class.php');
+require_once( PATH_DIR_MAIN . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR .  'lib.class.php');
+

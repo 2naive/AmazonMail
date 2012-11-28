@@ -25,7 +25,7 @@
         ob_end_flush();
     ob_implicit_flush(1);
 
-    require_once("config.php");
+    require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config.php');
 
     # Loading DATA
     $users          = Lib::load_from_file(PATH_FILE_SUBSCRIBERS);
